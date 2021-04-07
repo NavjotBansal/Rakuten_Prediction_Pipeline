@@ -1,5 +1,6 @@
 import vid_to_frame
 import frame_emotion_detection
+import google_sheets
 import os 
 import torch
 import video_bounding_box
@@ -20,14 +21,15 @@ for modelname in modellist:
 		zip_ref.extractall('model')
 		zip_ref.close()
 
-if __name__ == '__main__':
+def model_script(filepath):
 	feat_score_fold_0,gender_array,time_array = video_bounding_box.show_boxes(INPUT_FILE)
 	#print(feat_score_fold_0)
 	feat_score_fold_1 = list()
 	print("Ensembling models")
-	vid_to_frame.video_to_frames(video_path=INPUT_FILE, frames_dir=FRAME_PATH, overwrite=False, every=30, chunk_size=1000)
-	for images in os.listdir(os.path.join(FRAME_PATH,INPUT_FILE)):
-		score, codes = frame_emotion_detection.predict_emotion(os.path.join(FRAME_PATH,INPUT_FILE),images)
+	video_dir, video_filename = os.path.split(filepath)
+	vid_to_frame.video_to_frames(video_path=filepath, frames_dir=FRAME_PATH, overwrite=True, every=30, chunk_size=1000)
+	for images in os.listdir(os.path.join(FRAME_PATH,video_filename)):
+		score, codes = frame_emotion_detection.predict_emotion(os.path.join(FRAME_PATH,video_filename),images)
 		#print(float(score),code)
 		_,dominantcode = torch.max(codes.data, 0)
 		dominantcode = dominantcode.cpu().numpy()
