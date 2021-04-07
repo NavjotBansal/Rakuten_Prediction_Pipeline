@@ -1,12 +1,12 @@
 import pipeline
-from flask import Flask,flash, render_template, url_for, request
+from flask import Flask,flash, render_template, url_for, request,redirect
 import os 
 import zipfile
 from werkzeug.utils import secure_filename
 
 UPLOAD_FOLDER = 'Uploads'
 ALLOWED_EXTENSIONS = {'mp4'}
-
+TABLEAU_URL = 'https://public.tableau.com/profile/anubhav.pandey7854#!/vizhome/FirstEmotionTrack/EmotionTrackPg1'
 app = Flask(__name__)
 app.secret_key = 'super secret key'
 app.config['SESSION_TYPE'] = 'filesystem'
@@ -34,7 +34,7 @@ def upload_file():
             file.save(filepath)
             print("File uploaded to path->{}".format(filepath))
             pipeline.model_script(filepath)
-            return 'Successfully pushed to server'
+            return redirect(TABLEAU_URL)
         return render_template('index.html')                       
 
 if __name__ == "__main__":
