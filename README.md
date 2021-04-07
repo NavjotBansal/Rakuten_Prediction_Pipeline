@@ -7,10 +7,12 @@ This will deal with face emotions and gender at different timeframes
 Create a venv first
 
 ```bash
+
 python3 -m venv rakutenvenv
 source rakutenvenv/bin/activate
 pip3 install -r requirements.txt
-python3 pipeline.py
+export FLASK_APP=application.py
+flask run OR python3 application.py (whichever works)
 ```
 
 ## Output File 

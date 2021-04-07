@@ -1,3 +1,11 @@
 model
 model.zip
 rakutenenv/
+rakutenvenv/
+__pycache__/
+models/__pycache__/
+output.mp4
+transforms/__pycache__/
+output.csv
+.DS_Store
+KID/OKid_mixed.mp4/
