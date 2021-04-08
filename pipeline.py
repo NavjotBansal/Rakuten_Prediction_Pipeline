@@ -22,7 +22,7 @@ for modelname in modellist:
 		zip_ref.close()
 
 def model_script(filepath):
-	feat_score_fold_0,gender_array,time_array = video_bounding_box.show_boxes(INPUT_FILE)
+	feat_score_fold_0,gender_array,time_array = video_bounding_box.show_boxes(filepath)
 	#print(feat_score_fold_0)
 	feat_score_fold_1 = list()
 	print("Ensembling models")
