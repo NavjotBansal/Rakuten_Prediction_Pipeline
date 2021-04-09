@@ -35,7 +35,7 @@ if __name__ == '__main__':
 	df = df[df['Gender'] != -1]
 	df.replace(np.nan,0.0,inplace=True)
 	from datetime import date
-	today_date = date.today()
+	today_date = str(date.today())
 	df['Date'] = [today_date]*df.shape[0]
 	count_file = open('counts.txt','r')
 	count_val = int(count_file.read())
