@@ -6,6 +6,9 @@ import numpy as np
 import tqdm.auto as tqdm
 import zipfile
 import cv2
+import time 
+from datetime import date
+import datetime
 
 INPUT_FILE = 'kid_mixed.mp4'
 FRAME_PATH = 'KID'
@@ -30,12 +33,18 @@ if __name__ == '__main__':
 	aggregated_score = (aggregated_score/row_sum[:,np.newaxis])
 	print("Creating aggregated_data")
 	df = pd.DataFrame(aggregated_score, columns = CLASS_NAMES)
-	df['Timestamp'] = time_array
+	timenow = time.time()
+	time_string = list()
+	for i in range(len(time_array)):
+		now = datetime.datetime.now()
+		time_array[i] += timenow
+		timedata = datetime.datetime.fromtimestamp(time_array[i]).strftime('%I:%M:%S %p')
+		time_string.append(f'{timedata}')
+	df['Timestamp'] = time_string
 	df['Gender'] = gender_array
 	df = df[df['Gender'] != -1]
 	df.replace(np.nan,0.0,inplace=True)
-	from datetime import date
-	today_date = str(date.today())
+	today_date = str(date.today().strftime("%d-%b-%y"))
 	df['Date'] = [today_date]*df.shape[0]
 	count_file = open('counts.txt','r')
 	count_val = int(count_file.read())
