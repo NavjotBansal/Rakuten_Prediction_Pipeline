@@ -34,6 +34,21 @@ if __name__ == '__main__':
 	df['Gender'] = gender_array
 	df = df[df['Gender'] != -1]
 	df.replace(np.nan,0.0,inplace=True)
-	df = df[['Timestamp','Gender','Happy','Sad','Angry','Disgusted','Fear','Surprised','Neutral']]
+	from datetime import date
+	today_date = date.today()
+	df['Date'] = [today_date]*df.shape[0]
+	count_file = open('counts.txt','r')
+	count_val = int(count_file.read())
+	count_file.close()
+
+	#1st 2nd 3rd 4th 5th 6th 7th 8th 9th 0th
+	
+	df['Meeting_ID'] = [count_val]*df.shape[0]
+	count_file = open('counts.txt','w')
+	count_val += 1
+	count_file.write(str(count_val))
+	count_file.close()
+	df = df[['Timestamp','Date','Meeting_ID','Gender','Happy','Sad','Angry','Disgusted','Fear','Surprised','Neutral']]
 	print(df)
 	df.to_csv('output.csv',index=False)
+	arr = df.values.tolist()
