@@ -59,8 +59,7 @@ def model_script(filepath):
 	
 	df['Meeting_ID'] = [count_val]*df.shape[0]
 	count_file = open('counts.txt','w')
-	count_val += 1
-	count_file.write(str(count_val))
+	count_file.write(str(count_val + 1))
 	count_file.close()
 	df = df[['Timestamp','Date','Meeting_ID','Gender','Happy','Sad','Angry','Disgusted','Fear','Surprised','Neutral']]
 	print(df)
