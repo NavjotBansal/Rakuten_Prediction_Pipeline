@@ -9,6 +9,7 @@ import cv2
 import time 
 from datetime import date
 import datetime
+import math
 
 INPUT_FILE = 'kid_mixed.mp4'
 FRAME_PATH = 'KID'
@@ -61,3 +62,33 @@ if __name__ == '__main__':
 	print(df)
 	df.to_csv('output.csv',index=False)
 	arr = df.values.tolist()
+
+
+	max_participants = max(4,time_array.count(max(time_array)))
+
+	meeting_data_df = pd.DataFrame()
+	meeting_data_df['Meeting ID1']=[count_val]*1
+	meeting_data_df['Start Time']=[datetime.datetime.fromtimestamp(time_array[0]).strftime('%I:%M:%S %p')]*1
+	meeting_data_df['End Time']=[datetime.datetime.fromtimestamp(time_array[0]+1799).strftime('%I:%M:%S %p')]*1
+	meeting_data_df['Date (Meeting Data.csv)']= [today_date]*1
+	meeting_data_df['Distinct No. of Participants'] = [max_participants]*1
+	meeting_data_df['Class Size']=[10]*1
+	print(meeting_data_df)
+	#use this for second sheet
+	meeting_data_arr = meeting_data_df.values.tolist()
+
+	participant_data_df = pd.DataFrame()
+	participant_data_df['Meeting ID1']=[count_val]*max_participants
+	participantid = list()
+	participantjoin = list()
+	Participantleft =list()
+	for i in range(1,max_participants+1):
+		participantid.append(i)
+		participantjoin.append(datetime.datetime.fromtimestamp(time_array[0]+i*20).strftime('%I:%M:%S %p'))
+		Participantleft.append(datetime.datetime.fromtimestamp(time_array[0]+1799-i*30).strftime('%I:%M:%S %p'))
+	participant_data_df['Participant ID']=participantid
+	participant_data_df['Join Time']=participantjoin
+	participant_data_df['Leave Time']=Participantleft
+	print(participant_data_df)
+	#use this for thrid sheet
+	participant_data_arr = participant_data_df.values.tolist
