@@ -68,6 +68,8 @@ def show_boxes(inputfile):
     emotion_window = []
     COLOR = (np.random.randint(0,255), np.random.randint(0,255), np.random.randint(0,255))
     cap =cv2.VideoCapture(inputfile)
+    fps = cap.get(cv2.CAP_PROP_FPS)
+    print(fps)
     print(cap.isOpened())
     ret, frame = cap.read()
     count = 0 
@@ -88,11 +90,11 @@ def show_boxes(inputfile):
             #print(f'frame {count}')
 
             #print(len(faces))
-            if len(faces) == 0 and count%30==0:
+            if len(faces) == 0 and count%fps==0:
                 feat_array.append(np.zeros(7))
                 gender_index = random.randint(0,100)%2
                 gender_array.append(gender_index)
-                time_array.append(count//30)
+                time_array.append(count//fps)
             for face_coordinates in faces:
                 x1, x2, y1, y2 = apply_offsets(face_coordinates, emotion_offsets)
                 gray_face = gray_image[y1:y2, x1:x2]
@@ -122,9 +124,9 @@ def show_boxes(inputfile):
                     gender_label = gender_classes[idx]
                 except:
                     gender_label = "false_detection"
-                if count%30 ==0:
+                if count%fps ==0:
                     feat_array.append(emotion_prediction)
-                    time_array.append(count//30)
+                    time_array.append(count//fps)
                     gender_array.append(idx)
                 #print(emotion_prediction)  #Show Model Prediction --4
                 emotion_probability = np.max(emotion_prediction)
@@ -155,10 +157,10 @@ def show_boxes(inputfile):
                 #draw_text(face_coordinates, frame, emotion_mode, color, 0, -45, 1, 1)    
                 cv2.rectangle(frame,(x1,y1),(x2,y2),(36,255,12), 2)
                 cv2.putText(frame, emotion_text, (x1, y1-10), cv2.FONT_HERSHEY_SIMPLEX, 0.9, color)
-                cv2.putText(frame, gender_label, (x1, y1-30), cv2.FONT_HERSHEY_SIMPLEX, 0.9, color)
+                #cv2.putText(frame, gender_label, (x1, y1-30), cv2.FONT_HERSHEY_SIMPLEX, 0.9, color)
                 #cv2.putText(frame, count//30, (x1, y1-30), cv2.FONT_HERSHEY_SIMPLEX, 0.9, COLOR)
             count += 1
-            #cv2.imshow('Video box', frame)#Show Final Output --7
+            cv2.imshow('Video box', frame)#Show Final Output --7
             imglist.append(frame)
             ret, frame = cap.read()
 
