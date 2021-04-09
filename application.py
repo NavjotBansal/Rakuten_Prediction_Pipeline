@@ -1,5 +1,5 @@
 import pipeline
-from flask import Flask,flash, render_template, url_for, request,redirect
+from flask import Flask,flash, render_template, url_for, request,redirect,send_file
 import os 
 import zipfile
 from werkzeug.utils import secure_filename
@@ -34,8 +34,31 @@ def upload_file():
             file.save(filepath)
             print("File uploaded to path->{}".format(filepath))
             pipeline.model_script(filepath)
-            return redirect(TABLEAU_URL)
-        return render_template('index.html')                       
+            # return redirect(TABLEAU_URL)
+            send_file('output.mp4', attachment_filename='output.mp4', as_attachment=True)
+            return render_template('downloads.html')
+        return render_template('index.html')   
+
+@app.route('/file-downloads/')
+def file_downloads():
+	try:
+		return render_template('downloads.html')
+	except Exception as e:
+		return str(e)
+
+@app.route('/return-files/')
+def return_files():
+	try:
+		return send_file('output.mp4', attachment_filename='output.mp4', as_attachment=True)
+	except Exception as e:
+		return str(e)       
+
+@app.route('/tableau/')
+def tableau_redirect():
+	try:
+		return redirect(TABLEAU_URL)
+	except Exception as e:
+		return str(e)               
 
 if __name__ == "__main__":
     app.run(host="0.0.0.0")
