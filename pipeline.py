@@ -79,7 +79,7 @@ def model_script(filepath):
 	meeting_data_df['Class Size']=[10]*1
 	print(meeting_data_df)
 	meeting_data_df.to_csv('Meeting_Data.csv', header= False, index = False,mode='a',line_terminator="\n")
-	google_sheets.push_to_sheets2('Meetings_Data','Meeting_Data.csv')
+	google_sheets.push_to_sheets2('Meeting_Data','Meeting_Data.csv')
 	#use this for second sheet
 	meeting_data_arr = meeting_data_df.values.tolist()
 	print(meeting_data_arr)
