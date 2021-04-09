@@ -18,3 +18,11 @@
   font-size: 150%;
   height: 500px;
 }
+
+.topnav a{
+  float: right;
+}
+
+.navbar {
+  background: darkred;
+}
