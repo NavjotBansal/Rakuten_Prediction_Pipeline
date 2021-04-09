@@ -7,6 +7,6 @@ def push_to_sheets(data,sheet_name):
     cols = wks.col_values(1)
     rows = wks.row_values(1)
     c = len(cols)
-    k = "A{}".format(c+1)
+    row_number = "A{}".format(c+1)
     print(rows)
-    #wks.update(k, data)
+    #wks.update(row_number, data)
