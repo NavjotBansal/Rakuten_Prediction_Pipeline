@@ -7,7 +7,7 @@ from tensorflow.python.keras.preprocessing import image
 import numpy as np
 #import matplotlib.pyplot as plt
 import random
-
+import math
 
 def preprocess_input(x, v2=True):
     x = x.astype('float32')
@@ -68,7 +68,7 @@ def show_boxes(inputfile):
     emotion_window = []
     COLOR = (np.random.randint(0,255), np.random.randint(0,255), np.random.randint(0,255))
     cap =cv2.VideoCapture(inputfile)
-    fps = cap.get(cv2.CAP_PROP_FPS)
+    fps = math.ceil(cap.get(cv2.CAP_PROP_FPS))
     print(fps)
     print(cap.isOpened())
     ret, frame = cap.read()
@@ -93,7 +93,7 @@ def show_boxes(inputfile):
             if len(faces) == 0 and count%fps==0:
                 feat_array.append(np.zeros(7))
                 gender_index = random.randint(0,100)%2
-                gender_array.append(gender_index)
+                gender_array.append(-1)
                 time_array.append(count//fps)
             for face_coordinates in faces:
                 x1, x2, y1, y2 = apply_offsets(face_coordinates, emotion_offsets)

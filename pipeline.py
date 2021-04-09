@@ -7,7 +7,7 @@ import tqdm.auto as tqdm
 import zipfile
 import cv2
 
-INPUT_FILE = 'input-zoom.mp4'
+INPUT_FILE = 'kid_mixed.mp4'
 FRAME_PATH = 'KID'
 
 CLASS_NAMES = ['Angry', 'Disgusted', 'Fear', 'Happy', 'Sad', 'Surprised', 'Neutral']
@@ -32,7 +32,8 @@ if __name__ == '__main__':
 	df = pd.DataFrame(aggregated_score, columns = CLASS_NAMES)
 	df['Timestamp'] = time_array
 	df['Gender'] = gender_array
-	df = df[df['Gender'] != 'None']
+	df = df[df['Gender'] != -1]
+	df.replace(np.nan,0.0,inplace=True)
 	df = df[['Timestamp','Gender','Happy','Sad','Angry','Disgusted','Fear','Surprised','Neutral']]
 	print(df)
 	df.to_csv('output.csv',index=False)
