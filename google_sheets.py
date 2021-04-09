@@ -26,7 +26,7 @@ def push_to_sheets(data,sheet_name):
     # wks.update_cell(2, 1, '2020-12-12')
     wks.update_cells(cell_list)
 
-def push_to_sheets2(data,spreadsheet_name,csv_file):
+def push_to_sheets2(spreadsheet_name,csv_file):
     # from oauth2client.service_account import ServiceAccountCredentials
 
     # scope = ["https://spreadsheets.google.com/feeds", 'https://www.googleapis.com/auth/spreadsheets',
