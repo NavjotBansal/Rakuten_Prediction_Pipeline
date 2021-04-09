@@ -160,7 +160,7 @@ def show_boxes(inputfile):
                 #cv2.putText(frame, gender_label, (x1, y1-30), cv2.FONT_HERSHEY_SIMPLEX, 0.9, color)
                 #cv2.putText(frame, count//30, (x1, y1-30), cv2.FONT_HERSHEY_SIMPLEX, 0.9, COLOR)
             count += 1
-            cv2.imshow('Video box', frame)#Show Final Output --7
+            #cv2.imshow('Video box', frame)#Show Final Output --7
             imglist.append(frame)
             ret, frame = cap.read()
 
