@@ -53,4 +53,4 @@ def model_script(filepath):
 	print(df)
 	df.to_csv('output.csv',index=False)
 	arr = df.values.tolist()
-	# google_sheets.push_to_sheets(arr,"Emotion_Data")
+	google_sheets.push_to_sheets(arr,"Emotion_Data")
