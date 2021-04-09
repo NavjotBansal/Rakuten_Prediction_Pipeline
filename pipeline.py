@@ -10,8 +10,9 @@ import time
 from datetime import date
 import datetime
 import math
+from csv import writer
 
-INPUT_FILE = 'kid_mixed.mp4'
+INPUT_FILE = 'kid_small.mp4'
 FRAME_PATH = 'KID'
 
 CLASS_NAMES = ['Angry', 'Disgusted', 'Fear', 'Happy', 'Sad', 'Surprised', 'Neutral']
@@ -28,10 +29,12 @@ if __name__ == '__main__':
 	#print(feat_score_fold_0)
 	# feat_score_fold_1 = list()
 	print("Ensembling models")
-	feat_score_fold_0 = np.array(feat_score_fold_0)
+	feat_score_fold_0 = np.array(feat_score_fold_0,dtype=float)
 	aggregated_score = np.add(feat_score_fold_0,feat_score_fold_0)/2
 	row_sum = np.sum(aggregated_score,axis=1)
 	aggregated_score = (aggregated_score/row_sum[:,np.newaxis])
+	aggregated_score=np.round(aggregated_score, 4)
+
 	print("Creating aggregated_data")
 	df = pd.DataFrame(aggregated_score, columns = CLASS_NAMES)
 	timenow = time.time()
@@ -60,9 +63,8 @@ if __name__ == '__main__':
 	count_file.close()
 	df = df[['Timestamp','Date','Meeting_ID','Gender','Happy','Sad','Angry','Disgusted','Fear','Surprised','Neutral']]
 	print(df)
-	df.to_csv('output.csv',index=False)
 	arr = df.values.tolist()
-
+	df.to_csv('Emotion_Data.csv', header= False, index = False,mode='a',line_terminator="\n")
 
 	max_participants = max(4,time_array.count(max(time_array)))
 
@@ -74,9 +76,10 @@ if __name__ == '__main__':
 	meeting_data_df['Distinct No. of Participants'] = [max_participants]*1
 	meeting_data_df['Class Size']=[10]*1
 	print(meeting_data_df)
+	meeting_data_df.to_csv('Meeting_Data.csv', header= False, index = False,mode='a',line_terminator="\n")
 	#use this for second sheet
 	meeting_data_arr = meeting_data_df.values.tolist()
-
+	print(meeting_data_arr)
 	participant_data_df = pd.DataFrame()
 	participant_data_df['Meeting ID1']=[count_val]*max_participants
 	participantid = list()
@@ -84,11 +87,12 @@ if __name__ == '__main__':
 	Participantleft =list()
 	for i in range(1,max_participants+1):
 		participantid.append(i)
-		participantjoin.append(datetime.datetime.fromtimestamp(time_array[0]+i*20).strftime('%I:%M:%S %p'))
-		Participantleft.append(datetime.datetime.fromtimestamp(time_array[0]+1799-i*30).strftime('%I:%M:%S %p'))
+		participantjoin.append(str(datetime.datetime.fromtimestamp(time_array[0]+i*20).strftime('%I:%M:%S %p')))
+		Participantleft.append(str(datetime.datetime.fromtimestamp(time_array[0]+1799-i*30).strftime('%I:%M:%S %p')))
 	participant_data_df['Participant ID']=participantid
 	participant_data_df['Join Time']=participantjoin
 	participant_data_df['Leave Time']=Participantleft
 	print(participant_data_df)
+	participant_data_df.to_csv('Participant_Data.csv', header= False, index = False,mode='a',line_terminator="\n")
 	#use this for thrid sheet
-	participant_data_arr = participant_data_df.values.tolist
+	participant_data_arr = participant_data_df.values.tolist()
