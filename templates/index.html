@@ -3,16 +3,118 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Turing Machines</title>
+    <title>EmotionTrack</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='styles/style.css') }}">
+    <style>
+        .footer {
+    margin-top: 40px;
+    padding: 20px 0;
+    background: #f6f6f6;
+    padding-left: 30px;
+    padding-right: 30px;
+}
+.center-block {
+  display: block;
+  margin-right: auto;
+  margin-left: auto;
+}
+.navbar-brand{
+    color:#bb0000;
+}
+    </style>
 </head>
 <body>
-    <div style="text-align: center;">
-        <h1>Turing Machines</h1>
-        <form action = "/uploader" method = "POST" 
-         enctype = "multipart/form-data">
-         <input type = "file" name = "file" />
-         <input type = "submit"/>
-      </form>
+    <!-- <header style="margin-top: -20px;"> 
+        <section>
+            <div class="wrapper text-center bg-light" >
+                <h2>EmotionTrack
+                </h2>
+            </div> 
+        </section>
+        
+    </header> -->
+    <div class="container">
+
+    <nav class="navbar navbar-default">
+        <div class="container-fluid">
+          <div class="navbar-header">
+           
+            <a class="navbar-brand" href="#">EmotionTrack</a>
+          </div>
+          <div id="navbar" class="navbar-collapse collapse">
+            <ul class="nav navbar-nav">
+              <li class="active"><a href="#">Home</a></li>
+              <li><a href="https://public.tableau.com/profile/anubhav.pandey7854#!/vizhome/TestEmotionTrack/EmotionTrackPg1">Dashboard</a></li>
+              
+              
+            </ul>
+            
+          </div>
+        </div>
+      </nav>
+       <main >
+           <div class="container" style="text-align:center">
+            <form action = "/uploader" method = "POST" 
+            enctype = "multipart/form-data" >
+            <div class="form-group" >
+                <label for="videoInput" >Upload your meeting video here</label>
+                <input class="center-block" type = "file" id= "videoInput" name = "file" accept="video/*"/>
+                
+            </div>
+
+            
+                
+            <button type="submit" class="btn btn-default" onClick="showLoader()">Submit</button>
+            <script>
+                function showLoader() {
+                    document.getElementById("loader").style.display = "block";
+                }
+              </script>
+            </form>
+           </div>
+           <style>
+            .no-js #loader { display: none;  }
+    .js #loader { display: block; position: absolute; left: 100px; top: 0; }
+    .se-pre-con {
+        position: fixed;
+        left: 0px;
+        top: 0px;
+        width: 100%;
+        height: 100%;
+        z-index: 9999;
+        background: url(https://smallenvelop.com/wp-content/uploads/2014/08/Preloader_10.gif) center no-repeat #fff;
+    }
+    .center{
+        display: flex;
+    
+      justify-content: center;
+    
+      align-items: center;
+      font-size: 150%;
+      height: 500px;
+    }
+        </style>
+           <div id = "loader" style="display:none;" class="se-pre-con" style="text-align:center">
+            <p class="center">Processing...</p>
+        </div>
+           
+         
+        
+       </main>
+        <footer class="footer">
+            <div class="copyright" id="copyright">© EmotionTrack</div>
+            <nav>
+                
+                    <span>Made by Team TuringMachines with ❤️</span>
+                     <a href="https://twitter.com/Emotion_Track"> Contact us </a>
+
+                
+            </nav>
+            <p></p>
+        </footer>
+        
     </div>
+    
 </body>
 </html>

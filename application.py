@@ -37,7 +37,14 @@ def upload_file():
             # return redirect(TABLEAU_URL)
             send_file('output.mp4', attachment_filename='output.mp4', as_attachment=True)
             return render_template('downloads.html')
-        return render_template('index.html')   
+        return render_template('index.html')  
+        
+@app.route("/processing",methods=['POST','GET'])
+def processing():
+    if request.method == "POST":
+        return 'Successfully pushed to server'
+    else:
+        return render_template('processing.html') 
 
 @app.route('/file-downloads/')
 def file_downloads():
