@@ -1,16 +1,14 @@
-import vid_to_frame
-import frame_emotion_detection
-import google_sheets
 import os 
 import torch
 import video_bounding_box
+import google_sheets
 import pandas as pd
 import numpy as np
 import tqdm.auto as tqdm
 import zipfile
 import cv2
 
-INPUT_FILE = 'input-zoom.mp4'
+INPUT_FILE = 'kid_mixed.mp4'
 FRAME_PATH = 'KID'
 
 CLASS_NAMES = ['Angry', 'Disgusted', 'Fear', 'Happy', 'Sad', 'Surprised', 'Neutral']
@@ -35,7 +33,8 @@ def model_script(filepath):
 	df = pd.DataFrame(aggregated_score, columns = CLASS_NAMES)
 	df['Timestamp'] = time_array
 	df['Gender'] = gender_array
-	df = df[df['Gender'] != 'None']
+	df = df[df['Gender'] != -1]
+	df.replace(np.nan,0.0,inplace=True)
 	df = df[['Timestamp','Gender','Happy','Sad','Angry','Disgusted','Fear','Surprised','Neutral']]
 	print(df)
 	df.to_csv('output.csv',index=False)
