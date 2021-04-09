@@ -3,12 +3,127 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Turing Machines</title>
+    <title>EmotionTrack</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='styles/style.css') }}">
+    <style>   
+.footer {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  background-color: #bb0000;
+  color: white;
+  padding-left: 50px;
+  padding-right: 50px;
+  padding-top:20px;
+  padding-bottom: 20px;
+  font-size: 20px;
+}
+.center-block {
+  display: block;
+  margin-right: auto;
+  margin-left: 400px;
+}
+.topnav a{
+  float: right;
+  color: #ffffff;
+}
+
+.navbar-default {
+  background-color: #bb0000;
+  padding-left: 40px;
+  padding-top:20px;
+  padding-bottom: 20px;
+}
+
+.nav.navbar-nav li a{
+    color: #ffffff;
+    padding-left: 40px;
+    font-size: 20px;
+    padding-top: 13px;
+}
+
+.navbar-header a{
+    color: #ffffff !important;
+}
+
+.form-group {
+  margin-top: 250px;
+  font-size: 200%;
+}
+
+.btn.btn-default{
+    padding: 10px 20px;
+    font-size: 20px;
+    border-radius: 10px;
+    background-color: #bb0000;
+    color: #ffffff;
+    margin-left: 40px;
+}
+
+.uploader {
+  margin-top: auto;
+  margin-bottom: auto;
+}
+
+.text {
+  font-size: 30px;
+  color:#000000;
+}
+
+.brand {
+  font-size: 25px;
+}
+
+.buttonlist {
+    margin-top: 200px;
+}
+
+.buttonlist2 {
+    margin-top: 20px;
+}
+</style>
 </head>
 <body>
-    <div class="container">
-		<a href="/return-files/" target="blank"><button class='btn btn-default'>Download</button></a>
-        <a href="/tableau/" target="blank"><button class='btn btn-default'>Tableau</button></a>
-   </div>
+    <div class="header">
+    <nav class="navbar-default">  
+      
+          <div class="navbar-header">
+            
+            <a class="brand" href="#"><img  src="./EmotionTrack Logo.png" height="50px" width="50px">EmotionTrack</a>
+          </div>
+          <div id="navbar" class="navbar-collapse collapse">
+            <ul class="nav navbar-nav">
+              <li><a href="#">Home</a></li>
+              <li><a href="https://public.tableau.com/profile/anubhav.pandey7854#!/vizhome/TestEmotionTrack/EmotionTrackPg1">Dashboard</a></li>
+            </ul>
+          </div>
+      </nav>
+       <main class ="upload">
+           <div class="buttonlist" style="text-align:center">
+            <div class="container">
+                <a href="/return-video/" target="blank"><button class='btn btn-default'>Download Video</button></a>
+                <a href="/return-csv/" target="blank"><button class='btn btn-default'>Download CSV</button></a>
+
+                <a href="/tableau/" target="blank"><button class='btn btn-default'>View Dashboard</button></a>
+           </div>
+            <!-- <button type="submit" class="btn btn-default" onClick="showLoader()">Download CSV</button> 
+            <button type="submit" class="btn btn-default" onClick="showLoader()">Download Video</button> -->
+            
+           </div>
+             
+       </main>
+        <footer class="footer">
+            <div class="copyright" id="copyright">© EmotionTrack</div>
+            <nav class="topnav">
+                
+                    <span>Made by Team TuringMachines with 🤍</span>
+                     <a href="https://twitter.com/Emotion_Track"> Contact us </a>
+            </nav>
+            <p></p>
+        </footer>     
+    </div>
+    
 </body>
 </html>

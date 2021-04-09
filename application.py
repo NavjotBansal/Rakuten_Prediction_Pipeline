@@ -53,12 +53,19 @@ def file_downloads():
 	except Exception as e:
 		return str(e)
 
-@app.route('/return-files/')
-def return_files():
+@app.route('/return-video/')
+def return_video():
 	try:
 		return send_file('output.mp4', attachment_filename='output.mp4', as_attachment=True)
 	except Exception as e:
 		return str(e)       
+
+@app.route('/return-csv/')
+def return_csv():
+	try:
+		return send_file('Emotion_Data.csv', attachment_filename='Emotion_Data.csv', as_attachment=True)
+	except Exception as e:
+		return str(e)  
 
 @app.route('/tableau/')
 def tableau_redirect():
