@@ -27,7 +27,7 @@ def model_script(filepath):
 	feat_score_fold_1 = list()
 	print("Ensembling models")
 	video_dir, video_filename = os.path.split(filepath)
-	vid_to_frame.video_to_frames(video_path=filepath, frames_dir=FRAME_PATH, overwrite=True, every=30, chunk_size=1000)
+	vid_to_frame.video_to_frames(video_path=filepath, frames_dir=FRAME_PATH, overwrite=False, every=30, chunk_size=1000)
 	for images in os.listdir(os.path.join(FRAME_PATH,video_filename)):
 		score, codes = frame_emotion_detection.predict_emotion(os.path.join(FRAME_PATH,video_filename),images)
 		#print(float(score),code)
