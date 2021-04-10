@@ -7,7 +7,8 @@ This will deal with face emotions and gender at different timeframes
 Create a venv first
 
 ```bash
-
+git clone 
+git checkout vedant/rakuten 
 python3 -m venv rakutenvenv
 source rakutenvenv/bin/activate
 pip3 install -r requirements.txt
