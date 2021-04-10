@@ -2,6 +2,10 @@
 
 http://turingmachines.eastasia.cloudapp.azure.com:5000/
 
+# Dashboard Link
+
+https://public.tableau.com/profile/anubhav.pandey7854#!/vizhome/TestEmotionTrack/EmotionTrackPg1
+
 # Rakuten Prediction pipeline Local 
 
 This will deal with face emotions and gender at different timeframes
