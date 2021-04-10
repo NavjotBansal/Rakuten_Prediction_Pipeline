@@ -7,7 +7,7 @@ This will deal with face emotions and gender at different timeframes
 Create a venv first
 
 ```bash
-git clone 
+git clone https://github.com/NavjotBansal/Rakuten_Prediction_Pipeline.git
 git checkout vedant/rakuten 
 python3 -m venv rakutenvenv
 source rakutenvenv/bin/activate
