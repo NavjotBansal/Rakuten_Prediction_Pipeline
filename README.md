@@ -17,4 +17,4 @@ python3 application.py
 
 ## Output File 
 
-Output is saved in output.csv , which is just one meeting inference we need to append all outputs to a new csv
+Output is saved in Emotion_Data.csv, Participant_Data.csv, Meeting_Data.csv and output.mp4. 
