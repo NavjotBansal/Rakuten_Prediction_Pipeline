@@ -1,4 +1,8 @@
-# Rakuten Prediction pipeline
+# This service is hosted on the url 
+
+http://turingmachines.eastasia.cloudapp.azure.com:5000/
+
+# Rakuten Prediction pipeline Local 
 
 This will deal with face emotions and gender at different timeframes
 
