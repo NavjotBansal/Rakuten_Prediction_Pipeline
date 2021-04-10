@@ -6,7 +6,7 @@ from werkzeug.utils import secure_filename
 
 UPLOAD_FOLDER = 'Uploads'
 ALLOWED_EXTENSIONS = {'mp4'}
-TABLEAU_URL = 'https://public.tableau.com/profile/anubhav.pandey7854#!/vizhome/FirstEmotionTrack/EmotionTrackPg1'
+TABLEAU_URL = 'https://public.tableau.com/profile/anubhav.pandey7854#!/vizhome/TestEmotionTrack/EmotionTrackPg1'
 app = Flask(__name__)
 app.secret_key = 'super secret key'
 app.config['SESSION_TYPE'] = 'filesystem'
