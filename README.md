@@ -12,7 +12,7 @@ python3 -m venv rakutenvenv
 source rakutenvenv/bin/activate
 pip3 install -r requirements.txt
 export FLASK_APP=application.py
-flask run OR python3 application.py (whichever works)
+python3 application.py
 ```
 
 ## Output File 
